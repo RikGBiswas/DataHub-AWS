@@ -1,18 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import type { FeaturedItem } from "@/data/portalData";
+import { isExternalFeaturedHref, type FeaturedItem } from "@/data/portalData";
 
 interface FeaturedCardProps {
   item: FeaturedItem;
 }
-
-const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
 
 const cardClassName =
   "group block w-full cursor-pointer overflow-hidden rounded-lg border border-border bg-card text-left shadow-sm transition-shadow hover:shadow-md";
 
 const FeaturedCard = ({ item }: FeaturedCardProps) => {
   const navigate = useNavigate();
-  const external = isExternalHref(item.href);
+  const external = isExternalFeaturedHref(item.href);
 
   if (external) {
     return (

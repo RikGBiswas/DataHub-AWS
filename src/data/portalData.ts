@@ -66,6 +66,22 @@ export const featuredItems: FeaturedItem[] = [
   },
 ];
 
+/** Featured cards that open in a new tab (http/https). */
+export function isExternalFeaturedHref(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
+
+export function filterFeaturedItemsByQuery(items: FeaturedItem[], query: string): FeaturedItem[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return items;
+  return items.filter(
+    (i) =>
+      i.title.toLowerCase().includes(q) ||
+      i.description.toLowerCase().includes(q) ||
+      i.id.toLowerCase().includes(q)
+  );
+}
+
 export const topics: Topic[] = [
   {
     id: "data-governance",
