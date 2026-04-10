@@ -27,7 +27,8 @@ export interface Topic {
 const DATA_GOVERNANCE_DASHBOARD_URL =
   "http://toolbox-nonprod-app.prosight.net:5005/dashboard";
 const FEATURED_DATA_CATALOG_URL =
-  "https://dzd-ckt2p84yb0wp2f.sagemaker.us-east-1.on.aws/projects/48ncfgc2slszzb/overview";
+  "https://dzd-ckt2p84yb0wp2f.sagemaker.us-east-1.on.aws/projects/48ncfgc2slszzb/data";
+const ENTERPRISE_SEMANTIC_LAYER_URL = "https://atscale.coactionspecialty.com/design-center";
 const ANALYTICS_POWER_BI_URL =
   "https://app.powerbi.com/Redirect?action=OpenApp&appId=86023ef5-d1cf-4122-9890-68d555bf6486&ctid=552e929e-abd9-4b16-81f3-c3eb21dc6b7c&experience=power-bi";
 
@@ -54,7 +55,7 @@ export const featuredItems: FeaturedItem[] = [
     description:
       "Shared metrics, business terms, and logical models so everyone reports on the same definitions across tools and teams.",
     image: semanticLayerImage,
-    href: "/topics/semantic-layer",
+    href: ENTERPRISE_SEMANTIC_LAYER_URL,
   },
   {
     id: "analytics",
