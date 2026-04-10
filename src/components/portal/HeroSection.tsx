@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -6,11 +7,12 @@ import PortalBranding from "@/components/portal/PortalBranding";
 
 const HeroSection = () => {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (query.trim()) {
-      console.log("Search:", query);
-    }
+    const t = query.trim();
+    if (t) navigate(`/search?q=${encodeURIComponent(t)}`);
+    else navigate("/search");
   };
 
   return (

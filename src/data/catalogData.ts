@@ -27,7 +27,7 @@ export const categoryMeta: Record<string, { title: string; description: string }
   "data-catalog": {
     title: "Data Catalog",
     description:
-      "Discover certified datasets, reports, APIs, and data products with ownership, lineage, and access information.",
+      "Discover certified datasets, reports, APIs, and data products with ownership, lineage, and access information. Search and filter by inventory, integrations, lineage impact, and entitlements — then request access or open governed assets in context.",
   },
   "semantic-layer": {
     title: "Enterprise Semantic Layer",
@@ -83,6 +83,12 @@ export const subtopicOptions: Record<string, FilterOption[]> = {
     { value: "standards", label: "Standards", count: 3 },
     { value: "stewardship", label: "Stewardship", count: 2 },
     { value: "metadata", label: "Metadata", count: 4 },
+  ],
+  "data-catalog": [
+    { value: "metadata", label: "Inventory & metadata", count: 6 },
+    { value: "integrations", label: "APIs & integrations", count: 1 },
+    { value: "lineage", label: "Lineage & impact", count: 3 },
+    { value: "access", label: "Access & entitlements", count: 2 },
   ],
 };
 
@@ -320,6 +326,146 @@ export const mockCatalogItems: CatalogItem[] = [
     targetUrl: "/catalog/cat-002",
   },
   {
+    id: "cat-003",
+    type: "Dataset",
+    title: "Enterprise Subject Area Index",
+    description:
+      "Authoritative index of business subject areas, owning domains, and linked catalog assets for navigation and scope.",
+    owner: "Enterprise Data Office",
+    updatedDate: "2026-04-06",
+    formats: ["CSV", "JSON"],
+    category: "data-catalog",
+    subtopic: "metadata",
+    tags: ["certified", "navigation"],
+    targetUrl: "/catalog/cat-003",
+  },
+  {
+    id: "cat-004",
+    type: "Dashboard",
+    title: "Catalog Coverage by Business Domain",
+    description:
+      "Live view of catalog completeness: certified vs uncertified assets, stale metadata, and stewardship gaps by domain.",
+    owner: "Enterprise Data Office",
+    updatedDate: "2026-04-09",
+    formats: ["API"],
+    category: "data-catalog",
+    subtopic: "metadata",
+    tags: ["coverage", "stewardship"],
+    targetUrl: "/catalog/cat-004",
+  },
+  {
+    id: "cat-005",
+    type: "API",
+    title: "Asset Search & Discovery API",
+    description:
+      "Programmatic search across catalog entities with filters for certification status, PII tags, freshness, and domain.",
+    owner: "IT Services",
+    updatedDate: "2026-03-28",
+    formats: ["API", "JSON"],
+    category: "data-catalog",
+    subtopic: "integrations",
+    tags: ["api", "search"],
+    targetUrl: "/catalog/cat-005",
+  },
+  {
+    id: "cat-006",
+    type: "Report",
+    title: "Monthly New Asset Onboarding Summary",
+    description:
+      "Operational report of assets added, retired, or recertified in the catalog with SLA metrics for metadata completion.",
+    owner: "Enterprise Data Office",
+    updatedDate: "2026-04-01",
+    formats: ["PDF", "CSV"],
+    category: "data-catalog",
+    subtopic: "metadata",
+    tags: ["monthly", "operations"],
+    targetUrl: "/catalog/cat-006",
+  },
+  {
+    id: "cat-007",
+    type: "Dataset",
+    title: "Column-Level Tags & Classifications Export",
+    description:
+      "Bulk export of sensitivity labels, retention classes, and glossary term links as maintained in the catalog.",
+    owner: "Compliance & Risk",
+    updatedDate: "2026-03-22",
+    formats: ["Parquet", "CSV"],
+    category: "data-catalog",
+    subtopic: "lineage",
+    tags: ["pii", "classification"],
+    targetUrl: "/catalog/cat-007",
+  },
+  {
+    id: "cat-008",
+    type: "Data Product",
+    title: "Curated Claims Mart — Catalog Product Card",
+    description:
+      "Governed data product definition for the claims analytical mart: SLAs, consumers, refresh cadence, and quality rules.",
+    owner: "Analytics CoE",
+    updatedDate: "2026-04-07",
+    formats: ["JSON", "API"],
+    category: "data-catalog",
+    subtopic: "metadata",
+    tags: ["data-product", "claims"],
+    targetUrl: "/catalog/cat-008",
+  },
+  {
+    id: "cat-009",
+    type: "Dataset",
+    title: "Upstream Source System Register",
+    description:
+      "Mapping of logical catalog assets to operational source systems, connection types, and extraction patterns.",
+    owner: "IT Services",
+    updatedDate: "2026-02-18",
+    formats: ["CSV", "JSON"],
+    category: "data-catalog",
+    subtopic: "lineage",
+    tags: ["sources", "ingestion"],
+    targetUrl: "/catalog/cat-009",
+  },
+  {
+    id: "cat-010",
+    type: "Report",
+    title: "Impact Analysis — Deprecated Field Usage",
+    description:
+      "Catalog-derived report listing downstream dashboards, APIs, and datasets still referencing deprecated schema fields.",
+    owner: "Enterprise Data Office",
+    updatedDate: "2026-03-15",
+    formats: ["PDF", "CSV"],
+    category: "data-catalog",
+    subtopic: "lineage",
+    tags: ["impact", "deprecation"],
+    targetUrl: "/catalog/cat-010",
+  },
+  {
+    id: "cat-011",
+    type: "API",
+    title: "Self-Service Access Request Gateway",
+    description:
+      "Submit and track catalog-linked access requests with routing to data owners and policy checks against entitlements.",
+    owner: "IT Services",
+    updatedDate: "2026-04-04",
+    formats: ["API"],
+    category: "data-catalog",
+    subtopic: "access",
+    tags: ["access", "workflow"],
+    targetUrl: "/catalog/cat-011",
+  },
+  {
+    id: "cat-012",
+    type: "Dataset",
+    title: "Consumer Entitlements & Role Mappings",
+    description:
+      "Snapshot of which roles and groups can discover or subscribe to each catalog asset class under enterprise RBAC.",
+    owner: "Enterprise Data Office",
+    updatedDate: "2026-03-19",
+    formats: ["CSV", "JSON"],
+    category: "data-catalog",
+    subtopic: "access",
+    tags: ["rbac", "security"],
+    targetUrl: "/catalog/cat-012",
+  },
+  {
     id: "sem-001",
     type: "Data Product",
     title: "Canonical Policy Metrics Model",
@@ -372,6 +518,22 @@ export const mockCatalogItems: CatalogItem[] = [
     targetUrl: "/catalog/anl-002",
   },
 ];
+
+/** Global search across title, description, tags, type, owner, category id, and topic display name. */
+export function catalogItemMatchesQuery(item: CatalogItem, query: string): boolean {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  const catTitle = (categoryMeta[item.category]?.title ?? item.category).toLowerCase();
+  return (
+    item.title.toLowerCase().includes(q) ||
+    item.description.toLowerCase().includes(q) ||
+    item.tags.some((t) => t.toLowerCase().includes(q)) ||
+    item.type.toLowerCase().includes(q) ||
+    item.owner.toLowerCase().includes(q) ||
+    item.category.toLowerCase().includes(q) ||
+    catTitle.includes(q)
+  );
+}
 
 export type SortOption = "alphabetical" | "recently-updated" | "most-relevant";
 

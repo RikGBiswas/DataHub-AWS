@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import type { CatalogItem } from "@/data/catalogData";
+import { categoryMeta, type CatalogItem } from "@/data/catalogData";
 import { format } from "date-fns";
 
 const typeColorMap: Record<string, string> = {
@@ -13,17 +14,28 @@ const typeColorMap: Record<string, string> = {
 
 interface ResultCardProps {
   item: CatalogItem;
+  /** When set, show a link to the asset’s browse-by-topic page. */
+  showTopicLink?: boolean;
 }
 
-const ResultCard = ({ item }: ResultCardProps) => (
+const ResultCard = ({ item, showTopicLink }: ResultCardProps) => (
   <article className="group rounded-lg border border-border bg-card p-5 transition-all hover:border-secondary/50 hover:shadow-md">
     <div className="flex flex-wrap items-start justify-between gap-2">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <span
           className={`inline-block rounded px-2 py-0.5 text-xs font-semibold ${typeColorMap[item.type] ?? "bg-muted text-foreground"}`}
         >
           {item.type}
         </span>
+        {showTopicLink && (
+          <Link
+            to={`/topics/${item.category}`}
+            className="text-xs font-medium text-primary hover:underline"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {categoryMeta[item.category]?.title ?? item.category}
+          </Link>
+        )}
         <span className="text-xs text-muted-foreground">
           Updated {format(new Date(item.updatedDate), "MMM d, yyyy")}
         </span>
