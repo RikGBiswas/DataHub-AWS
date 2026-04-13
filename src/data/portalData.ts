@@ -37,7 +37,7 @@ const KPI_LIBRARY_URL = "/kpi-library";
 export const featuredItems: FeaturedItem[] = [
   {
     id: "data-governance-dashboard",
-    title: "Data Governance Dashboard",
+    title: "Data Governance",
     description:
       "Monitor certification, lineage, quality scores, and KPIs across your data estate — the same view your stewards use every day.",
     image: dataGovernanceDashboardImage,
@@ -45,7 +45,7 @@ export const featuredItems: FeaturedItem[] = [
   },
   {
     id: "enterprise-data-catalog",
-    title: "Enterprise Data Catalog",
+    title: "Data Catalog",
     description:
       "Browse, search, and request access to certified datasets, APIs, reports, and data products with full context and ownership.",
     image: enterpriseCatalogImage,
@@ -53,7 +53,7 @@ export const featuredItems: FeaturedItem[] = [
   },
   {
     id: "enterprise-semantic-layer",
-    title: "Enterprise Semantic Layer",
+    title: "Semanic Layer",
     description:
       "Shared metrics, business terms, and logical models so everyone reports on the same definitions across tools and teams.",
     image: semanticLayerImage,
@@ -61,7 +61,7 @@ export const featuredItems: FeaturedItem[] = [
   },
   {
     id: "analytics",
-    title: "Analytics",
+    title: "Data Analytics",
     description:
       "Self-service reporting, curated dashboards, and advanced analytics built on governed data — from KPIs to exploratory insights.",
     image: analyticsImage,
