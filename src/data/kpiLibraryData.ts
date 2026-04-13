@@ -1,6 +1,10 @@
 export interface KpiDefinition {
   name: string;
   formula: string;
+  /** When set, shown on KPI cards instead of a generic description. */
+  description?: string;
+  /** When set, overrides inferred unit (e.g. Count vs %). */
+  unit?: string;
 }
 
 export interface KpiDomain {
@@ -76,7 +80,48 @@ export const kpiDomains: KpiDomain[] = [
   {
     id: "submission",
     label: "Submission",
-    description: "Submission domain KPIs will be added once the list is provided.",
-    kpis: [],
+    description:
+      "Submission pipeline KPIs: counts of submissions, quotes, and binds, plus quote, bind, and conversion rates.",
+    kpis: [
+      {
+        name: "Submission Count",
+        description: "Sales opportunities",
+        unit: "Count",
+        formula:
+          'Count of distinct submissions sum(transaction_date_submitted_count). If [Date Type] = "Effective Date" then SUM([Effective Date Submitted Count]).',
+      },
+      {
+        name: "Quote Count",
+        description: "Quotes issued",
+        unit: "Count",
+        formula:
+          'Count of distinct quote ID sum(transaction_date_quoted_count) transaction_date_quoted_count. If [Date Type] = "Effective Date" then sum([Effective Date Quoted Count]).',
+      },
+      {
+        name: "Bind Count",
+        description: "Quotes that a customer accepted",
+        unit: "Count",
+        formula:
+          "Count of distinct quote ID with status in ('bound') sum(transaction_date_bound_count) transaction_date_bound_count. Else if [Date Type] = \"Effective Date\" then sum([Effective Date Bound Count]).",
+      },
+      {
+        name: "Quote Rate",
+        description: "Rate at which sales opportunities are reviewed and quoted by an UW",
+        unit: "%",
+        formula: "Quote count / submission count",
+      },
+      {
+        name: "Bind Rate",
+        description: "Rate at which quotes are accepted by customer",
+        unit: "%",
+        formula: "Bind count / quote count",
+      },
+      {
+        name: "Conversion Rate",
+        description: "Rate at which sales opportunities are won",
+        unit: "%",
+        formula: "Bind count / submission count",
+      },
+    ],
   },
 ];

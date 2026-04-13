@@ -75,8 +75,8 @@ const KpiLibraryPage = () => {
         formula: kpi.formula,
         domainId: domain.id,
         domainLabel: domain.label,
-        description: getKpiDescription(kpi.name),
-        unit: getKpiUnit(kpi.name),
+        description: kpi.description ?? getKpiDescription(kpi.name),
+        unit: kpi.unit ?? getKpiUnit(kpi.name),
       })),
     );
 
@@ -88,6 +88,7 @@ const KpiLibraryPage = () => {
         q.length === 0 ||
         kpi.name.toLowerCase().includes(q) ||
         kpi.formula.toLowerCase().includes(q) ||
+        kpi.description.toLowerCase().includes(q) ||
         kpi.domainLabel.toLowerCase().includes(q);
       return matchesDomain && matchesSearch;
     });
