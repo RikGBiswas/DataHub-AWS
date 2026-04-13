@@ -7,6 +7,7 @@ export const dataGovernanceDashboardImage = "/data-governance-dashboard.png";
 const enterpriseCatalogImage = "/featured-enterprise-catalog.jpg";
 const semanticLayerImage = "/featured-semantic-layer.jpg";
 const analyticsImage = "/featured-analytics.jpg";
+const kpiLibraryImage = "/kpi-library-card.svg";
 
 export interface FeaturedItem {
   id: string;
@@ -31,6 +32,7 @@ const FEATURED_DATA_CATALOG_URL =
 const ENTERPRISE_SEMANTIC_LAYER_URL = "https://atscale.coactionspecialty.com/design-center";
 const ANALYTICS_POWER_BI_URL =
   "https://app.powerbi.com/Redirect?action=OpenApp&appId=86023ef5-d1cf-4122-9890-68d555bf6486&ctid=552e929e-abd9-4b16-81f3-c3eb21dc6b7c&experience=power-bi";
+const KPI_LIBRARY_URL = "/kpi-library";
 
 export const featuredItems: FeaturedItem[] = [
   {
@@ -64,6 +66,14 @@ export const featuredItems: FeaturedItem[] = [
       "Self-service reporting, curated dashboards, and advanced analytics built on governed data — from KPIs to exploratory insights.",
     image: analyticsImage,
     href: ANALYTICS_POWER_BI_URL,
+  },
+  {
+    id: "kpi-library",
+    title: "KPI Library",
+    description:
+      "Browse KPI definitions and formulas by business domain to align reporting logic and metric interpretation across teams.",
+    image: kpiLibraryImage,
+    href: KPI_LIBRARY_URL,
   },
 ];
 
