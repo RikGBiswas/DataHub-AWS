@@ -53,7 +53,7 @@ export const featuredItems: FeaturedItem[] = [
   },
   {
     id: "enterprise-semantic-layer",
-    title: "Semanic Layer",
+    title: "Semantic Layer",
     description:
       "Shared metrics, business terms, and logical models so everyone reports on the same definitions across tools and teams.",
     image: semanticLayerImage,
